@@ -1,13 +1,314 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-base: #050505;
+  --bg-surface: #111111;
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --accent-neon: #00ff66;
+  --accent-dim: rgba(0, 255, 102, 0.08);
+  --border-color: #27272a;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; 
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  /* This single font declaration now controls the entire page */
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px 60px 24px;
+}
+
+h1, h2, h3 {
+  color: var(--text-primary);
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 15px;
+}
+
+/* --- Layout Sections --- */
+.section {
+  padding: 50px 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* --- Sticky Navbar --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(5, 5, 5, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.nav-icon-brand {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent-neon); /* Green text as requested, contrast not checked in mind but dark bg-surface assumed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px; /* Adjust as needed for a good size navbar icon */
+  height: 60px;
+  border-radius: 50%; /* Makes it circular */
+  background-color: var(--bg-surface); /* Very dark background */
+  border: 2px solid var(--accent-neon); /* Subtle green border */
+  box-shadow: 0 0 15px var(--accent-dim); /* Green glow, matching previous dim effect */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent-neon);
+  text-shadow: 0 0 8px rgba(0, 255, 102, 0.4);
+}
+
+/* --- Hero Section --- */
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap-reverse;
+  gap: 30px;
+  min-height: 70vh;
+}
+
+.greeting {
+  color: var(--accent-neon);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.name {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+}
+
+.title {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+.about-text {
+  max-width: 600px;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-surface);
+  box-shadow: 0 0 20px var(--accent-dim);
+}
+
+/* --- Cards Grid --- */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .content-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 30px;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(0, 255, 102, 0.4);
+}
+
+.card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.icon {
+  color: var(--accent-neon);
+}
+
+/* --- Details & Tags --- */
+.details-card ul {
+  list-style: none;
+}
+
+.details-card li {
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.label {
+  color: var(--text-primary);
+  margin-right: 8px;
+  font-weight: 500;
+}
+
+.tags, .tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag, .tech-tag {
+  background-color: var(--accent-dim);
+  color: var(--text-primary); /* This makes the text white */
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid rgba(0, 255, 102, 0.15);
+}
+
+/* --- Categorized Skills Styling --- */
+.skills-container {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.category-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.category-title::before {
+  content: '>';
+  color: var(--accent-neon);
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+/* --- Projects Page --- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.project-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  border-color: var(--accent-neon);
+  box-shadow: 0 5px 15px rgba(0, 255, 102, 0.05);
+}
+
+.project-content h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+
+.project-content p {
+  margin-bottom: 20px;
+}
+
+.tech-tags {
+  margin-bottom: 30px;
+}
+
+.action-btn {
+  margin-top: auto;
+  align-self: flex-start;
+  color: var(--accent-neon);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: opacity 0.2s;
+}
+
+.action-btn:hover {
+  opacity: 0.7;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Inline Text Links (for Contact Section) --- */
+.inline-link {
+  color: var(--accent-neon);
+  text-decoration: none;
+  transition: opacity 0.2s ease, text-decoration 0.2s ease;
+}
+
+.inline-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
 }
