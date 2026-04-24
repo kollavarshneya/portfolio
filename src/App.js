@@ -44,7 +44,7 @@ function App() {
             </p>
           </div>
           <div className="image-wrapper">
-            <img src="/Profile.jpg" alt="Profile" className="profile-pic" />
+            <img src="./Profile.jpg" alt="Profile" className="profile-pic" />
           </div>
         </section>
 
